@@ -1,0 +1,13 @@
+numpy
+pandas
+gdown
+torch
+torchvision
+tqdm
+opencv-python
+scikit-learn
+matplotlib
+seaborn
+mlflow
+dvc
+transformers
