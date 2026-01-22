@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding="utf-8") as f:
 
 __version__= "0.0.1"
 
-NAME_REPO = "Biomasse-DVC-Mlflow"
+NAME_REPO = "FaceSystemRecognition-DeepFake"
 AUTHOR_USERNAME="dona-eric"
 SRC_REPO="Face_Recognition_System"
 AUTHOR_EMAIL="donaerickoulodji@gmail.com"
