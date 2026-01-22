@@ -1,0 +1,15 @@
+README.md
+setup.py
+src/FaceSystemRecognition_DeepFake.egg-info/PKG-INFO
+src/FaceSystemRecognition_DeepFake.egg-info/SOURCES.txt
+src/FaceSystemRecognition_DeepFake.egg-info/dependency_links.txt
+src/FaceSystemRecognition_DeepFake.egg-info/top_level.txt
+src/Face_Recognition_System/__init__.py
+src/Face_Recognition_System/components/__init__.py
+src/Face_Recognition_System/config/__init__.py
+src/Face_Recognition_System/config/configuration.py
+src/Face_Recognition_System/constants/__init__.py
+src/Face_Recognition_System/entity/__init__.py
+src/Face_Recognition_System/pipeline/__init__.py
+src/Face_Recognition_System/utils/__init__.py
+src/Face_Recognition_System/utils/common.py

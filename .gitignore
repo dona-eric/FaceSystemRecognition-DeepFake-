@@ -5,3 +5,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .vscode/
+.env
+research/FaceImages.zip
+mlflow_s3.yml
