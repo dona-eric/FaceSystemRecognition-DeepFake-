@@ -1,0 +1,6 @@
+outs:
+- md5: cc9e231756d5260c3f831acd5fd4e513.dir
+  size: 118762510
+  nfiles: 9630
+  hash: md5
+  path: Human_Faces

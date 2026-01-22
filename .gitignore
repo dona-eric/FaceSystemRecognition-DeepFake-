@@ -8,3 +8,9 @@ __pycache__/
 .env
 research/FaceImages.zip
 mlflow_s3.yml
+artifacts/Human_Faces/AI-Generated Images/**
+artifacts/Human_Faces/Real Images/**
+
+# Sauf les fichiers .dvc et le .gitignore interne
+!artifacts/**/.dvc
+!artifacts/**/.gitignore
