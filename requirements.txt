@@ -11,3 +11,11 @@ seaborn
 mlflow
 dvc
 transformers
+tqdm
+ensure
+scikit-learn
+pyYAML
+python-box
+joblib
+tensorflow
+ipykernel
