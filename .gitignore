@@ -16,3 +16,5 @@ artifacts/Human_Faces/Real_Images/**
 !artifacts/**/.gitignore
 
 artifacts/dataset_metadata.csv
+
+mlruns/1/**
