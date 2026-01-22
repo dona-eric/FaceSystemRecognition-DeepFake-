@@ -1,1 +1,5 @@
 [2026-01-21 21:01:22,758: INFO: main: WELCOME TO LEARNING ML CHAINS]
+[2026-01-22 14:29:47,302: INFO: 2626045734: The dataset HumanFace is unzip path:artifacts]
+[2026-01-22 16:50:46,820: INFO: 844727944: ✅ Fichier CSV créé avec 4630 entrées.]
+[2026-01-22 16:53:35,589: INFO: 1650993603: ✅ Fichier CSV créé avec 4630 entrées.]
+[2026-01-22 16:59:51,311: INFO: 2866685746: ✅ Fichier CSV créé avec 9630 entrées in :artifacts/dataset_metadata.csv]
