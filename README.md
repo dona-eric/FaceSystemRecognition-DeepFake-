@@ -1,57 +1,103 @@
-### FACE RECOGNITION SYSTEM
+### FACE RECOGNITION SYSTEM (DeepFake) ###
 
 Ce projet consiste à identifier des modèles d'IA et d'apprentissage automatique dans les images mélangées(Images générées par l'IA et les vraies images de visage) afin de vérifier l'authenticité, la détection de deepfake.
 
 
-### EXPERIENCES AND TRACKING WITH MLFLOW
+### A* EXPERIENCES AND TRACKING WITH MLFLOW
 
-##### 1- Pour installez MLFlow et le client Python DagsHub.
+***1- Pour installez MLFlow et le client Python DagsHub.***
+
 ```bash
-%pip install -q dagshub mlflow
+pip install -q dagshub mlflow
+
 ```
 
-##### 2- Utilisez le client DagsHub pour configurer les informations de connexion à MLflow.
+***2-Utilisez le client DagsHub pour configurer les informations de connexion à MLflow. ***
+
 ```bash
 import dagshub
 
-dagshub.init(repo_owner='dona-eric', repo_name='FaceSystemRecognition-DeepFake-', mlflow=True)
+dagshub.init(
+    repo_owner='dona-eric', 
+    repo_name='FaceSystemRecognition-DeepFake-', 
+    mlflow=True
+    )
 ```
-##### 3- Utilisez MLflow pour consigner les paramètres et les métriques.
+***3- Utilisez MLflow pour consigner les paramètres et les métriques.***
+
 ```bash
 import mlflow
+
 with mlflow.start_run():
   # Your training code here...
   mlflow.log_metric('accuracy', 42)
   mlflow.log_param('Param name', 'Value')
+
 ```
 Ou activez la journalisation automatique pour la plupart des frameworks ML populaires, puis exécutez votre code d'entraînement sans aucune modification !
 
-![mlflow]https://mlflow.org/docs/latest/tracking.html
+[mlflow](https://mlflow.org/docs/latest/tracking.html)
+
 ```bash
 mlflow.autolog()
 ```
 
-### Initialisation de DVC and Dagshub Connect S3
+### B* Initialisation de DVC and Dagshub Connect S3
 
-1- Initialisé DVC
+***1- Initialisé DVC***
+
 ```bash
+pip install dvc
 dvc init
 
-### votre repertoire .dvc est initialisé
 ```
-###### Dagshub DVC remote
+Après avoir initialisé, il est important de vous signaler que l'objectif n'est pas seulement de developper un modèle mais de vous apprendre les bonnes techniques de data engineering.
+Pour ce fait, nous allons versionner, les datasets avec *dvc* :
+
 ```bash
+dvc add yours_datasets
+
+git commit -m "un message de commit personnaliser"
+
+git push -u origin your_branch
+
+```
+*Attention*: C'est pas fini !!!
+
+***2- Dagshub DVC Remote***
+
+Pour vous connecter à mlflow et dvc via la plateforme Dagshub, plusieurs possiblités s'offrent à vous.
+Vous pouvez configurer une connexion externe de stockage comme (S3, AWS, AZure et GCS). Ainsi vous suivrez exactement les memes démarches comme ce qui se délivre dans ce projet avec le serveur S3.
+
+Ici, à travers la pateforme Dagshub [dagshub]([dagshub](https://dagshub.com/dona-eric)), vous disposez directement d'un point d'accès vers le serveur **S3** compatible.
+
+Dans votre terminal(Linux)/(MacOS):
+
+```bash
+pip install dvc-s3
 dvc remote add origin s3://dvc
 dvc remote modify origin endpointurl https://dagshub.com/dona-eric/FaceSystemRecognition-DeepFake-.s3
+
 ```
-###### setup credentials
+***Setup credentials***
+
+Dans l'onglet **Remote** vous verrez ***Data** et vous choisissez l'option ****DVC****
+
 ```bash
 dvc remote modify origin --local access_key_id your_token
 dvc remote modify origin --local secret_access_key your_token
-``
+```
+***your_token*** = le token disponible dans le lien de l'onglet
 
 
+Now, dans la partie **B**, nous avons ajouter nos datasets sur dvc, mais pour s'assurer que les données sont bien versionnés et etre suivis meme après modification, il faut les pousser sur dagshub par la connexion  S3 . Et c'est ce que nous allons voir.
 
+***Push the datasets versioning***
+```bash
+dvc push -r origin
+
+``` 
+Et c'est terminé
 
 
 ## 📁 Project Structure
@@ -123,7 +169,6 @@ FaceSystemRecognition-DeepFake-/
 
 ### Web Framework
 - **fastapi** (0.115.0, 0.128.0) - Modern async web framework
-- **flask** (3.1.2) - Alternative lightweight framework
 - **uvicorn** (0.40.0) - ASGI server
 - **requests** (2.32.3) - HTTP client
 
@@ -198,28 +243,6 @@ FaceSystemRecognition-DeepFake-/
 - Integration with DagsHub
 - Config: `mlflow_s3.yml`
 
-### DagsHub Integration
-```bash
-# Connect to DagsHub
-dagshub.init(repo_owner='dona-eric', 
-             repo_name='FaceSystemRecognition-DeepFake-', 
-             mlflow=True)
-```
-
----
-
-## 🚀 Entry Points
-
-### Development
-- **Jupyter Notebooks**: `research/01_data_ingestion.ipynb`
-- **Main Script**: `main.py` (logs welcome message)
-- **Testing**: `test.py`
-
-### Production
-- **API Server**: FastAPI/Flask via `main.py`
-- **Web UI**: `templates/index.html`
-
----
 
 ## 📦 Installation & Setup
 
@@ -282,40 +305,26 @@ Raw Data
     ↓
 [API Inference]
     ↓
-Frontend (index.html)
+Frontend (streamlit.app)
 ```
 
 ---
 
-## 📝 Key Files Summary
-
-| File | Purpose |
-|------|---------|
-| `setup.py` | Package metadata & distribution |
-| `requirements.txt` | Dependencies list |
-| `main.py` | Application entry point |
-| `config/config.yml` | Application configuration |
-| `params.yml` | Model hyperparameters |
-| `dvc.yml` | ML pipeline definition |
-| `mlflow_s3.yml` | MLFlow configuration |
-| `src/Face_Recognition_System/__init__.py` | Package logger initialization |
-| `research/01_data_ingestion.ipynb` | Data exploration & preparation |
-
----
-
-## ✅ Status Verification
-
-- ✓ Package structure is properly organized
-- ✓ MLOps tools configured (MLFlow, DVC, DagsHub)
-- ✓ Dependencies comprehensive for CV/DL tasks
-- ✓ Web framework ready (FastAPI)
-- ⚠️ Configuration files need values
-- ⚠️ Components directory is empty (needs implementation)
-
----
-
 ## 🔗 GitHub Repository
-- **Owner**: dona-eric
+- **Owner**: Dona Eric KOULODJI
 - **Repo**: FaceSystemRecognition-DeepFake-
 - **Branch**: develop
 - **License**: MIT
+
+
+## Contacts
+
+Pour toutes collaborations, projets ou accompagnement,je suis ouvert à toutes les opportunités qui me permttent d'avoir un cadre d'échange, d'apprentissage et de partage.
+
+- **Email**: [dona-eric](donaerickoulodji@gmail.com)
+- **Linkedin**: [dona-erick](https://www.linkedin.com/in/dona-erick)
+- **Whatsapp**: [KOULODJI Eric](https://wa.me/+2290151344289)
+- **Github**: [dona-eric](https://github.com/dona-eric)
+- **Portfolio**: [mon-portfolio](https://donerick.vercel.app)
+
+##                                 ***Fait par Dona Eric KOULODJI***
